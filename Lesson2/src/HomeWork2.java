@@ -21,7 +21,7 @@ public class HomeWork2 {
          * @return result of addition, if sum of a and b is more then int can store -- returns -1;
          **/
         public static int sum(int a, int b) {
-            if ((a + b) < -128 || (a + b) > 127) return -1;
+            if (a >= Integer.MAX_VALUE || b >= Integer.MAX_VALUE) return -1;
             else return a + b;
         /*
         без else:
