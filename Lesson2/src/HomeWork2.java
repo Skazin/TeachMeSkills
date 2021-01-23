@@ -4,13 +4,13 @@ public class HomeWork2 {
 
         public static void main(String[] args) {
 
-            System.out.println(sum(10, 20));
-            System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
-            System.out.println(max(50, 49));
-            System.out.println(max(49, 50));
-            System.out.println(max(50, 50));
-            System.out.println(average(new int[]{1, 2, 3, 4, 5}));
-            System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
+//            System.out.println(sum(10, 20));
+//            System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
+//            System.out.println(max(50, 49));
+//            System.out.println(max(49, 50));
+//            System.out.println(max(50, 50));
+//            System.out.println(average(new int[]{1, 2, 3, 4, 5}));
+//            System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
             System.out.println(calculateHypotenuse());
         }
 
@@ -22,11 +22,11 @@ public class HomeWork2 {
          **/
         public static int sum(int a, int b) {
             long c = (long) a + b;
-            if (c >= Integer.MAX_VALUE || c <= Integer.MIN_VALUE) return -1;
+            if (c > Integer.MAX_VALUE || c < Integer.MIN_VALUE) return -1;
             else return a + b;
         /*
         без else:
-        if (c >= Integer.MAX_VALUE || c <= Integer.MIN_VALUE) return -1;
+        if (c > Integer.MAX_VALUE || c < Integer.MIN_VALUE) return -1;
         if (c < Integer.MAX_VALUE || c > Integer.MIN_VALUE) return a + b;
          */
         }
@@ -83,23 +83,18 @@ public class HomeWork2 {
          * @return hypotenuse
          */
         public static double calculateHypotenuse() {
-            int[] arr = new int[2];
-            int n = 1;
             Scanner in = new Scanner(System.in);
-            for (int i = 0; i < arr.length; i++) {
-                System.out.print("Введите катет №" + n +" : ");
-                arr[i] = in.nextInt();
-                ++n;
-            }
-            int a = arr[0];
-            int b = arr[1];
+            System.out.println("Необходимо ввести два катета.");
+            System.out.print("Введите катет №1: ");
+            double a = in.nextDouble();
+            System.out.print("Введите катет №2: ");
+            double b = in.nextDouble();
             return Math.hypot(a, b);
         }
         /*
         Без Math.hypot
-        double a = arr[0];
-        double b = arr[1];
-        return Math.sqrt();
+        double c = a * a + b * b;
+        return Math.sqrt(c);
          */
 }
 
