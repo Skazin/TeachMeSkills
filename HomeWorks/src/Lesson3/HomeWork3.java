@@ -26,9 +26,15 @@ public class HomeWork3 {
      * @return number value after operation
      */
     public static int operation(int number) {
-        if(number > 0) ++number;
-        else if (number < 0) number += 2;
-        else number = 10;
+        if (number > 0) {
+            ++number;
+        }
+        else if (number < 0) {
+            number -= 2;
+        }
+        else {
+            number = 10;
+        }
         return number;
     }
 
@@ -42,11 +48,19 @@ public class HomeWork3 {
      */
     public static void foobar(int number) {
         if (number % 3 == 0){
-            if (number % 5 == 0) System.out.println("foobar");
-            else System.out.println("foo");
+            if (number % 5 == 0) {
+                System.out.println("foobar");
+            }
+            else {
+                System.out.println("foo");
+            }
         }
-        else if (number % 5 == 0) System.out.println("bar");
-        else System.out.println("Please choose new number");
+        else if (number % 5 == 0) {
+            System.out.println("bar");
+        }
+        else {
+            System.out.println("Please choose new number");
+        }
     }
 
     /**
@@ -74,9 +88,15 @@ public class HomeWork3 {
         }
         for (int i = 0; i < height; i++) {                          // обрабатываем массив и формируем матрицу
             for (int j = 0; j < width; j++) {
-                if (arr[i][j] % 3 == 0) System.out.print(" + ");
-                else if (arr[i][j] % 7 == 0) System.out.print(" - ");
-                else System.out.print(" * ");
+                if (arr[i][j] % 3 == 0) {
+                    System.out.print(" + ");
+                }
+                else if (arr[i][j] % 7 == 0) {
+                    System.out.print(" - ");
+                }
+                else {
+                    System.out.print(" * ");
+                }
             }
             System.out.println("");
         }
@@ -94,11 +114,13 @@ public class HomeWork3 {
         for (currentNumber = 1; currentNumber < 1000; currentNumber++) {
             dividers = 0;
             for (int i = 1; i <= currentNumber; i++) {
-                if (currentNumber % i == 0)
+                if (currentNumber % i == 0) {
                     dividers++;
+                }
             }
-            if (dividers <= 2)
+            if (dividers <= 2) {
                 System.out.println(currentNumber);
+            }
         }
     }
 }
