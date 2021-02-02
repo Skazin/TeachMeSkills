@@ -44,18 +44,4 @@ public class PersonRegistry {
         }
         return people;
     }
-    public List<Person> getFitPeople(Address address) {
-        List<Person> people = new LinkedList<>();
-        for (Person person : citizens) {
-            if (person.getSex().equals("male")) {
-                Address personsAddress = person.getAddress();
-                int age = person.getAge();
-                if (personsAddress.getCountry().equals(address.getCountry()) && age >= 18 && age <= 27) {
-                    people.add(person);
-                }
-            }
-        }
-        return people;
-    }
-
 }

@@ -34,12 +34,12 @@ public class Computer {
     }
 
     public void on(){
+        if(resource > 0){
         Scanner in = new Scanner(System.in);
         System.out.println("Для включения компьютера выберите 0 или 1: ");
         int operatorChoice = in.nextInt();
         Random random = new Random();
         int compChoice = random.nextInt(2);
-        if(resource > 0){
             if (operatorChoice == compChoice){
                 System.out.println("Вы включили компьютер");
                 resource--;
@@ -53,12 +53,12 @@ public class Computer {
     }
 
     public void off(){
+        if(resource > 0){
         Scanner in = new Scanner(System.in);
         System.out.println("Для выключения компьютера выберите 0 или 1: ");
         int operatorChoice = in.nextInt();
         Random random = new Random();
         int compChoice = random.nextInt(2);
-        if(resource > 0){
             if (operatorChoice == compChoice){
                 System.out.println("Вы выключили компьютер");
                 resource--;

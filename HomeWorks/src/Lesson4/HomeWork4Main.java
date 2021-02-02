@@ -1,6 +1,5 @@
 package Lesson4;
 
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,7 +30,9 @@ public class HomeWork4Main {
             person.setAge(age);
             System.out.println("Введите страну проживания:");
             String country = in1.nextLine();
-            Address address = new Address(country);
+            System.out.println("Введите город проживания:");
+            String city = in1.nextLine();
+            Address address = new Address(country, city);
             person.setAddress(address);
         }
 
@@ -39,12 +40,15 @@ public class HomeWork4Main {
 
 
         RecruitingOffice office = new RecruitingOffice(registry);
-        Address countryForServe = new Address("Belarus");
+        Address countryForServe = new Address("Belarus", "Minsk");
         List<Person> fitPersons = office.getFitPeople(countryForServe);
-        System.out.println("Список граждан годных к службе в стране " + countryForServe.toString() + ": ");
-        for (Person person : fitPersons) {
-            System.out.println(person.getName() + " " + person.getAge() + " лет.");
-
+        if(fitPersons.size() == 0) {
+            System.out.println("Годных к службе по округу " + countryForServe.toString() + " нет. ");
+        } else {
+            System.out.println("Список граждан годных к службе по округу " + countryForServe.toString() + ": ");
+            for (Person person : fitPersons) {
+                System.out.println(person.getName() + " " + person.getAge() + " лет.");
+            }
         }
     }
 }
