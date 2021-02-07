@@ -6,13 +6,13 @@ public class HomeWork2 {
 
         public static void main(String[] args) {
 
-//            System.out.println(sum(10, 20));
-//            System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
-//            System.out.println(max(50, 49));
-//            System.out.println(max(49, 50));
-//            System.out.println(max(50, 50));
-//            System.out.println(average(new int[]{1, 2, 3, 4, 5}));
-//            System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
+            System.out.println(sum(10, 20));
+            System.out.println(sum(Integer.MAX_VALUE, Integer.MAX_VALUE));
+            System.out.println(max(50, 49));
+            System.out.println(max(49, 50));
+            System.out.println(max(50, 50));
+            System.out.println(average(new int[]{1, 2, 3, 4, 5}));
+            System.out.println(max(new int[]{1, 2, 3, 4, 5, 100, 99}));
             System.out.println(calculateHypotenuse());
         }
 

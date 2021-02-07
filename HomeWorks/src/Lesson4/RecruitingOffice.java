@@ -6,12 +6,15 @@ import java.util.List;
 public class RecruitingOffice {
 
     private final PersonRegistry registry;
+    private MilitaryUnit[] militaryUnits;
+    private int draftValue;
 
-    public RecruitingOffice(PersonRegistry registry) {
+    public RecruitingOffice(PersonRegistry registry, MilitaryUnit[] militaryUnits) {
         this.registry = registry;
+        this.militaryUnits = militaryUnits;
     }
 
-    public List<Person> getFitPeople(Address address) {
+    public void getFitPeopleToTheMilitaryUnit(Address address) {
         List<Person> peopleFromRegistry = registry.getPeople(address);
         List<Person> fitPeople = new LinkedList<>();
         for (Person person : peopleFromRegistry) {
@@ -20,6 +23,21 @@ public class RecruitingOffice {
                 fitPeople.add(person);
             }
         }
-        return fitPeople;
+        for (Person rookie : fitPeople) {
+            for (MilitaryUnit militaryUnit : militaryUnits) {
+                    militaryUnit.recruit(rookie);
+                    if (militaryUnit.isRecruited()) {
+                        break;
+                    }
+            }
+        }
+    }
+
+    public void getDraftValue(){
+        draftValue = 0;
+        for (MilitaryUnit militaryUnit : militaryUnits) {
+            draftValue += militaryUnit.getDraftValue();
+        }
+        System.out.println("В данный призывной период необходимо собрать - " + draftValue + " призывников.");
     }
 }

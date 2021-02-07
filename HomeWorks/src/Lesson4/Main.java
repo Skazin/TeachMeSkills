@@ -4,33 +4,44 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Person konstantin = new Person(30, "Konstantin", "male");
-        Address konstantinsAddress = new Address("Belarus", "Vitebsk");
+
+        Person konstantin = new Person(19, "Konstantin", 185, "male");
+        Address konstantinsAddress = new Address("Belarus", "Minsk");
         konstantin.setAddress(konstantinsAddress);
 
-        Person gleb = new Person(40, "Gleb", 190, "male");
-        Address glebsAddress = new Address("Belarus", "Vitebsk");
+        Person konstantin2 = new Person(19, "Konstantin", 185, "male");
+        Address konstantins2Address = new Address("Belarus", "Minsk");
+        konstantin2.setAddress(konstantins2Address);
+
+        Person gleb = new Person(25, "Gleb", 190, "male");
+        Address glebsAddress = new Address("Belarus", "Minsk");
         gleb.setAddress(glebsAddress);
 
-        Person oleg = new Person(38, "Oleg", "male");
-        Address olegsAddress = new Address("Belarus", "Braslav");
+        Person oleg = new Person(21, "Oleg", 190, "male");
+        Address olegsAddress = new Address("Belarus", "Minsk");
         oleg.setAddress(olegsAddress);
 
-        Person vadim = new Person(30, "Vadim", "male");
-        Address vadimsAddress = new Address("Belarus", "Smorgon'");
+        Person vadim = new Person(22, "Vadim", 167, "male");
+        Address vadimsAddress = new Address("Belarus", "Minsk");
         vadim.setAddress(vadimsAddress);
 
-        PersonRegistry registry = new PersonRegistry(new Person[]{gleb, konstantin, oleg, vadim});
+        PersonRegistry registry = new PersonRegistry(new Person[]{gleb, konstantin, konstantin2, oleg, vadim});
 
-        System.out.println(registry.countPeople(new Address("Belarus", "Vitebsk")));
-        System.out.println(registry.countPeople(new Address("Belarus", "Krarow")));
-        System.out.println(registry.countPeople("Belarus"));
+        MilitaryUnit militaryUnit1 = new MilitaryUnit("№56243");
+        MilitaryUnit militaryUnit2 = new MilitaryUnit("№56256");
+        MilitaryUnit militaryUnit3 = new MilitaryUnit("№79243");
+        MilitaryUnit militaryUnit4 = new MilitaryUnit("№56353");
+        MilitaryUnit militaryUnit5 = new MilitaryUnit("№52493");
+        MilitaryUnit[] militaryUnits = new MilitaryUnit[]{militaryUnit1, militaryUnit2, militaryUnit3, militaryUnit4, militaryUnit5};
 
-
-        List<Person> personList = registry.getPeople(new Address("Belarus", "Vitebsk"));
-        for (Person person : personList) {
-            System.out.println(person.getName());
-        }
-
+        RecruitingOffice office = new RecruitingOffice(registry, militaryUnits);
+        Address countryForServe = new Address("Belarus", "Minsk");
+        office.getFitPeopleToTheMilitaryUnit(countryForServe);
+        militaryUnit1.getInfo();
+        militaryUnit1.getRecruitsList();
+//        militaryUnit2.getInfo();
+//        militaryUnit3.getInfo();
+//        militaryUnit4.getInfo();
+//        militaryUnit5.getInfo();
     }
 }
