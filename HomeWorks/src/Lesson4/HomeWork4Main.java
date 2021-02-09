@@ -15,11 +15,11 @@ public class HomeWork4Main {
         Person person5 = new Person();
         Person[] people = new Person[]{person1, person2, person3, person4, person5};
 
-        MilitaryUnit militaryUnit1 = new MilitaryUnit("№56243");
-        MilitaryUnit militaryUnit2 = new MilitaryUnit("№56256");
-        MilitaryUnit militaryUnit3 = new MilitaryUnit("№79243");
-        MilitaryUnit militaryUnit4 = new MilitaryUnit("№56353");
-        MilitaryUnit militaryUnit5 = new MilitaryUnit("№52493");
+        MilitaryUnit militaryUnit1 = new MilitaryUnit("№56243", 100);
+        MilitaryUnit militaryUnit2 = new MilitaryUnit("№56256", 100);
+        MilitaryUnit militaryUnit3 = new MilitaryUnit("№79243", 100);
+        MilitaryUnit militaryUnit4 = new MilitaryUnit("№56353", 100);
+        MilitaryUnit militaryUnit5 = new MilitaryUnit("№52493", 100);
         MilitaryUnit[] militaryUnits = new MilitaryUnit[]{militaryUnit1, militaryUnit2, militaryUnit3, militaryUnit4, militaryUnit5};
 
         System.out.println("Создайте 5 граждан");

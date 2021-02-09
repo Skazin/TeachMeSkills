@@ -10,12 +10,10 @@ public class MilitaryUnit {
     private int maxValue;
     private final List<Person> recruits = new LinkedList<>();
 
-    {
-        maxValue = 100;
-    }
 
-    public MilitaryUnit(String name) {
+    public MilitaryUnit(String name, int maxValue) {
         this.name = name;
+        this.maxValue = maxValue;
     }
 
     public void recruit(Person rookie) {
@@ -23,14 +21,13 @@ public class MilitaryUnit {
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
                     System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
-                } else {
-                    recruits.add(rookie);
-                    maxValue--;
                 }
             }
+            recruits.add(rookie);
+            maxValue--;
         } else {
             System.out.println("Воинская часть: " + name + " - заполнена целиком.");
-            }
+        }
     }
 
     public void getInfo(){
