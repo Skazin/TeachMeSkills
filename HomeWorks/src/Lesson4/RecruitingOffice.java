@@ -26,7 +26,7 @@ public class RecruitingOffice {
         for (Person rookie : fitPeople) {
             for (MilitaryUnit militaryUnit : militaryUnits) {
                     militaryUnit.recruit(rookie);
-                    if (militaryUnit.isRecruited()) {
+                    if (militaryUnit.recruited()) {
                         break;
                     }
             }

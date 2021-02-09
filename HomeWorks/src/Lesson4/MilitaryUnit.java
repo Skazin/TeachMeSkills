@@ -9,6 +9,7 @@ public class MilitaryUnit {
     private final String name;
     private int maxValue;
     private final List<Person> recruits = new LinkedList<>();
+    private boolean isRecruited;
 
 
     public MilitaryUnit(String name, int maxValue) {
@@ -17,14 +18,18 @@ public class MilitaryUnit {
     }
 
     public void recruit(Person rookie) {
+        isRecruited = false;
         if (maxValue > 0) {
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
                     System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
+                    isRecruited = true;
                 }
             }
-            recruits.add(rookie);
-            maxValue--;
+            if(!isRecruited) {
+                recruits.add(rookie);
+                maxValue--;
+            }
         } else {
             System.out.println("Воинская часть: " + name + " - заполнена целиком.");
         }
@@ -51,7 +56,8 @@ public class MilitaryUnit {
         }
     }
 
-    public Boolean isRecruited(){
-        return maxValue > 0;
+    public boolean recruited(){
+        return true;
     }
+
 }
