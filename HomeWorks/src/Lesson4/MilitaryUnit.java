@@ -12,21 +12,22 @@ public class MilitaryUnit {
     private boolean isRecruited;
 
 
-    public MilitaryUnit(String name, int maxValue) {
+    public MilitaryUnit(String name, int maxValue){
         this.name = name;
         this.maxValue = maxValue;
     }
 
-    public void recruit(Person rookie) {
+    public void recruit(Person rookie){
         isRecruited = false;
-        if (maxValue > 0) {
+        if (maxValue > 0){
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
                     System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
                     isRecruited = true;
+                    break;
                 }
             }
-            if(!isRecruited) {
+            if(!isRecruited){
                 recruits.add(rookie);
                 maxValue--;
             }
@@ -57,7 +58,7 @@ public class MilitaryUnit {
     }
 
     public boolean recruited(){
-        return true;
+        return isRecruited;
     }
 
 }

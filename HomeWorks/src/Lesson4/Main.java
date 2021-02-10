@@ -39,9 +39,9 @@ public class Main {
         office.getFitPeopleToTheMilitaryUnit(countryForServe);
         militaryUnit1.getInfo();
         militaryUnit1.getRecruitsList();
-//        militaryUnit2.getInfo();
-//        militaryUnit3.getInfo();
-//        militaryUnit4.getInfo();
-//        militaryUnit5.getInfo();
+        militaryUnit2.getInfo();
+        militaryUnit3.getInfo();
+        militaryUnit4.getInfo();
+        militaryUnit5.getInfo();
     }
 }
