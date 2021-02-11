@@ -1,18 +1,18 @@
 package Lesson5;
 
-public class Car extends LandTransport{
+public class Car extends LandTransport {
 
     private String bodyType;
     private int maxPassengers;
 
     public Car (String brand, int power, int maxSpeed, int mass, int numberOfWheels,
-                int fuelConsumption, String bodyType, int maxPassengers){
+                int fuelConsumption, String bodyType, int maxPassengers) {
         super(brand, power, maxSpeed, mass, numberOfWheels, fuelConsumption);
         this.bodyType = bodyType;
         this.maxPassengers = maxPassengers;
     }
 
-    public void getInfo(){
+    public void getInfo() {
         System.out.println("Автомобиль модели: " + getBrand() + ".");
         System.out.println("Типо кузова автомобиля: " + getBodyType() + ".");
         System.out.println("Масса автомобиля: " + getMass() + " кг.");
@@ -24,7 +24,7 @@ public class Car extends LandTransport{
         System.out.println("Максимальное число пассажиров: " + getMaxPassengers() + " человек.");
     }
 
-    public void journeyInfo(double time){
+    public void journeyInfo(double time) {
         if(time > 0) {
             System.out.println("За " + time + " ч., автомобиль " + getBrand() + " ,двигаясь с максимальной скоростью " +
                     getMaxSpeed() + " км/ч, проедет " + (getMaxSpeed() * time) + " км и израсходует " +
@@ -35,7 +35,7 @@ public class Car extends LandTransport{
     }
 
 
-    private double fuelValue(double distance){
+    private double fuelValue(double distance) {
         return distance / getFuelConsumption();
     }
 

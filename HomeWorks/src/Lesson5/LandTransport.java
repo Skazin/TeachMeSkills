@@ -1,11 +1,11 @@
 package Lesson5;
 
-public class LandTransport extends Transport{
+public class LandTransport extends Transport {
 
     private int numberOfWheels;
     private int fuelConsumption;
 
-    public LandTransport (String brand, int power, int maxSpeed, int mass, int numberOfWheels, int fuelConsumption){
+    public LandTransport (String brand, int power, int maxSpeed, int mass, int numberOfWheels, int fuelConsumption) {
         super(brand, power, maxSpeed, mass);
         this.numberOfWheels = numberOfWheels;
         this.fuelConsumption = fuelConsumption;

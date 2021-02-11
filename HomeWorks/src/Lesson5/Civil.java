@@ -1,18 +1,18 @@
 package Lesson5;
 
-public class Civil extends AirTransport{
+public class Civil extends AirTransport {
 
     private int maxPassengers;
     private boolean hasBusiness;
 
     public Civil (String brand, int power, int maxSpeed, int mass, int wingspan,
-                  int minRunwayStripLength, int maxPassengers, boolean hasBusiness){
+                  int minRunwayStripLength, int maxPassengers, boolean hasBusiness) {
         super(brand, power, maxSpeed, mass, wingspan, minRunwayStripLength);
         this.maxPassengers = maxPassengers;
         this.hasBusiness = hasBusiness;
     }
 
-    public void getInfo(){
+    public void getInfo() {
         System.out.println("Самолет модели: " + getBrand() + ".");
         System.out.println("Размах крыльев: " + getWingspan() + " м.");
         System.out.println("Масса самолета: " + getMass() + " кг.");
@@ -24,8 +24,8 @@ public class Civil extends AirTransport{
         System.out.println("Имеется ли бизнес класс: " + hasBusiness() + ".");
     }
 
-    public void boarding(int boardingPassengers){
-        if(boardingPassengers <= maxPassengers){
+    public void boarding(int boardingPassengers) {
+        if(boardingPassengers <= maxPassengers) {
             System.out.println("Расскаживаемся и полетели.");
         } else {
             System.out.println("Нам нужен самолет побольше.");
