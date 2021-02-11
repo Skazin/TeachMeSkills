@@ -25,7 +25,7 @@ public class Military extends AirTransport {
     }
 
     public void launch() {
-        if(numberOfMissiles > 0) {
+        if (numberOfMissiles > 0) {
             System.out.println("Ракета пошла.");
             numberOfMissiles--;
             System.out.println("Осталось ракет: " + numberOfMissiles + ".");
@@ -35,7 +35,7 @@ public class Military extends AirTransport {
     }
 
     public void catapult() {
-        if(hasCatapult) {
+        if (hasCatapult) {
             System.out.println("Катапультирование прошло успешно.");
         } else {
             System.out.println("У вас нет такой системы. Brace for impact!");

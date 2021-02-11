@@ -25,7 +25,7 @@ public class Car extends LandTransport {
     }
 
     public void journeyInfo(double time) {
-        if(time > 0) {
+        if (time > 0) {
             System.out.println("За " + time + " ч., автомобиль " + getBrand() + " ,двигаясь с максимальной скоростью " +
                     getMaxSpeed() + " км/ч, проедет " + (getMaxSpeed() * time) + " км и израсходует " +
                     fuelValue(getMaxSpeed() * time) + " литров топлива.");

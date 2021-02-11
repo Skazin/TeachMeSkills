@@ -25,7 +25,7 @@ public class Civil extends AirTransport {
     }
 
     public void boarding(int boardingPassengers) {
-        if(boardingPassengers <= maxPassengers) {
+        if (boardingPassengers <= maxPassengers) {
             System.out.println("Расскаживаемся и полетели.");
         } else {
             System.out.println("Нам нужен самолет побольше.");

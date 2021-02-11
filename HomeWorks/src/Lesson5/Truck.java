@@ -22,7 +22,7 @@ public class Truck extends LandTransport {
     }
 
     public void shipment(double cargoWeight) {
-        if(cargoWeight <= carryingCapacity) {
+        if (cargoWeight <= carryingCapacity) {
             System.out.println("Грузовик загружен.");
         } else {
             System.out.println("Вам нужен грузовик побольше.");
