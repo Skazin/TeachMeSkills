@@ -14,7 +14,7 @@ public class RecruitingOffice {
         this.militaryUnits = militaryUnits;
     }
 
-    public void getFitPeopleToTheMilitaryUnit(Address address){
+    public void getFitPeopleToTheMilitaryUnit(Address address) {
         List<Person> peopleFromRegistry = registry.getPeople(address);
         List<Person> fitPeople = new LinkedList<>();
         for (Person person : peopleFromRegistry) {
@@ -23,19 +23,19 @@ public class RecruitingOffice {
                 fitPeople.add(person);
             }
         }
-        for (Person rookie : fitPeople){
-            for (MilitaryUnit militaryUnit : militaryUnits){
+        for (Person rookie : fitPeople) {
+            for (MilitaryUnit militaryUnit : militaryUnits) {
                     militaryUnit.recruit(rookie);
-                    if (militaryUnit.recruited()){
+                    if (militaryUnit.recruited()) {
                         break;
                     }
             }
         }
     }
 
-    public void getDraftValue(){
+    public void getDraftValue() {
         draftValue = 0;
-        for (MilitaryUnit militaryUnit : militaryUnits){
+        for (MilitaryUnit militaryUnit : militaryUnits) {
             draftValue += militaryUnit.getDraftValue();
         }
         System.out.println("В данный призывной период необходимо собрать - " + draftValue + " призывников.");

@@ -12,14 +12,14 @@ public class MilitaryUnit {
     private boolean isRecruited;
 
 
-    public MilitaryUnit(String name, int maxValue){
+    public MilitaryUnit(String name, int maxValue) {
         this.name = name;
         this.maxValue = maxValue;
     }
 
-    public void recruit(Person rookie){
+    public void recruit(Person rookie) {
         isRecruited = false;
-        if (maxValue > 0){
+        if (maxValue > 0) {
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
                     System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
@@ -27,7 +27,7 @@ public class MilitaryUnit {
                     break;
                 }
             }
-            if(!isRecruited){
+            if(!isRecruited) {
                 recruits.add(rookie);
                 maxValue--;
             }
@@ -36,9 +36,9 @@ public class MilitaryUnit {
         }
     }
 
-    public void getInfo(){
+    public void getInfo() {
         System.out.println("Воинская часть: " + name);
-        if(maxValue == 0){
+        if(maxValue == 0) {
             System.out.println("Воинская часть заполнена целиком.");
         } else {
             System.out.println("Количество служащих на данный момент : " + (100 - maxValue) + ".");
