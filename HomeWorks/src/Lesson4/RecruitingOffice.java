@@ -9,7 +9,7 @@ public class RecruitingOffice {
     private MilitaryUnit[] militaryUnits;
     private int draftValue;
 
-    public RecruitingOffice(PersonRegistry registry, MilitaryUnit[] militaryUnits){
+    public RecruitingOffice(PersonRegistry registry, MilitaryUnit[] militaryUnits) {
         this.registry = registry;
         this.militaryUnits = militaryUnits;
     }
