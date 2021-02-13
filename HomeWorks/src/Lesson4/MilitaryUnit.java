@@ -1,6 +1,8 @@
 package Lesson4;
 
 
+import Lesson4.exeptions.SexException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,17 +24,17 @@ public class MilitaryUnit {
         if (maxValue > 0) {
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
-                    System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
-                    isRecruited = true;
-                    break;
+                        System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
+                        isRecruited = true;
+                        break;
                 }
             }
-            if(!isRecruited) {
-                recruits.add(rookie);
-                maxValue--;
-            }
-        } else {
-            System.out.println("Воинская часть: " + name + " - заполнена целиком.");
+                if (!isRecruited) {
+                    recruits.add(rookie);
+                    maxValue--;
+                } else {
+                    System.out.println("Воинская часть: " + name + " - заполнена целиком.");
+                }
         }
     }
 
