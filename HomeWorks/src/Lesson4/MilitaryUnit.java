@@ -2,6 +2,7 @@ package Lesson4;
 
 
 import Lesson4.exeptions.SexException;
+import Lesson4.exeptions.ValueException;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,9 +20,9 @@ public class MilitaryUnit {
         this.maxValue = maxValue;
     }
 
-    public void recruit(Person rookie) {
+    public void recruit(Person rookie) throws ValueException {
         isRecruited = false;
-        if (maxValue > 0) {
+        if (!(maxValue > 0)) throw new  ValueException("Воинская часть: " + name + " - заполнена целиком.");
             for (Person man : recruits) {
                 if ((rookie.getAge() == man.getAge()) && rookie.getName().equals(man.getName()) && (rookie.getHeight() == man.getHeight())) {
                         System.out.println("Призывник " + rookie.getName() + " уже приписан к воинской части " + name + ".");
@@ -29,13 +30,11 @@ public class MilitaryUnit {
                         break;
                 }
             }
-                if (!isRecruited) {
-                    recruits.add(rookie);
-                    maxValue--;
-                } else {
-                    System.out.println("Воинская часть: " + name + " - заполнена целиком.");
+            if (!isRecruited) {
+                recruits.add(rookie);
+                maxValue--;
                 }
-        }
+
     }
 
     public void getInfo() {

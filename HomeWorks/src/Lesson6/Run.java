@@ -41,22 +41,11 @@ public class Run {
         robot2.action();
         robot3.action();
 
-        whoIsTheMostExpensive(robots);
+        Appraiser appraiser = new Appraiser();
+
+        appraiser.whoIsTheMostExpensive(robots);
 
     }
 
-    public static void whoIsTheMostExpensive (Robot[] robots) {
-        Robot theMostExpensiveRobot = new Robot();
-        int highestPrice;
-        for (int i = 0; i < robots.length; i++) {
-            for (int j = i + 1; j < robots.length; j++) {
-                if(robots[i].getPrice() >= robots[j].getPrice()) {
-                    theMostExpensiveRobot = robots[i];
-                } else {theMostExpensiveRobot = robots[j];}
-                highestPrice = Math.max(robots[i].getPrice(), robots[j].getPrice());
-            }
-        }
-        System.out.println("Самый дорогой робот из представленных - " + theMostExpensiveRobot.getName()
-                + ". Его стоимость равна: " + theMostExpensiveRobot.getPrice());
-    }
+
 }
