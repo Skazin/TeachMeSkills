@@ -39,13 +39,8 @@ public class Main {
 
         RecruitingOffice office = new RecruitingOffice(registry, militaryUnits);
         Address countryForServe = new Address("Belarus", "Minsk");
-        try {
-            office.getFitPeopleToTheMilitaryUnit(countryForServe);
-        } catch (SexException e) {
-            e.getMessage();
-        } catch (AgeException e) {
-            e.getMessage();
-        }
+        office.getFitPeopleToTheMilitaryUnit(countryForServe);
+
         militaryUnit1.getInfo();
         militaryUnit1.getRecruitsList();
         militaryUnit2.getInfo();

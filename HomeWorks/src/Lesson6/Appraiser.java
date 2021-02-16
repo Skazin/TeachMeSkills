@@ -3,7 +3,7 @@ package Lesson6;
 public class Appraiser {
 
     private Robot theMostExpensiveRobot = new Robot();
-    private int highestPrice;
+
 
     public Appraiser() {
 
