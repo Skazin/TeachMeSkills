@@ -1,5 +1,8 @@
 package Lesson4;
 
+import Lesson4.exeptions.AgeException;
+import Lesson4.exeptions.SexException;
+
 import java.util.List;
 import java.util.Scanner;
 

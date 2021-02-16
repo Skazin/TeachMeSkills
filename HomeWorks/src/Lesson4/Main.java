@@ -1,5 +1,8 @@
 package Lesson4;
 
+import Lesson4.exeptions.AgeException;
+import Lesson4.exeptions.SexException;
+
 import java.util.List;
 
 public class Main {
@@ -37,6 +40,7 @@ public class Main {
         RecruitingOffice office = new RecruitingOffice(registry, militaryUnits);
         Address countryForServe = new Address("Belarus", "Minsk");
         office.getFitPeopleToTheMilitaryUnit(countryForServe);
+
         militaryUnit1.getInfo();
         militaryUnit1.getRecruitsList();
         militaryUnit2.getInfo();

@@ -1,5 +1,9 @@
 package Lesson4;
 
+import Lesson4.exeptions.AgeException;
+import Lesson4.exeptions.SexException;
+import Lesson4.exeptions.ValueException;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -19,16 +23,22 @@ public class RecruitingOffice {
         List<Person> fitPeople = new LinkedList<>();
         for (Person person : peopleFromRegistry) {
             int age = person.getAge();
-            if (person.getSex().equals("male") && age >= 18 && age <= 27){
+            if(person.getSex().equals("male") && (age >= 18 && age <= 27)) {
                 fitPeople.add(person);
             }
+
         }
         for (Person rookie : fitPeople) {
             for (MilitaryUnit militaryUnit : militaryUnits) {
+                try {
                     militaryUnit.recruit(rookie);
                     if (militaryUnit.recruited()) {
                         break;
                     }
+                } catch (ValueException e){
+                    e.getMessage();
+                }
+
             }
         }
     }
