@@ -21,13 +21,13 @@ public class Person {
         try{
             name = editString(name);
             this.name = name;
-        } catch (InvalidNamingException e){
+        } catch (InvalidNamingException e) {
             System.out.println("При создании человека было неверно указано имя");
         }
         try{
             surname = editString(surname);
             this.surname = surname;
-        } catch (InvalidNamingException e){
+        } catch (InvalidNamingException e) {
             System.out.println("При создании человека была неверно указана фамилия");
         }
         this.height = height;
