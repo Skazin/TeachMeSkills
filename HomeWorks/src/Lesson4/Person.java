@@ -1,30 +1,39 @@
 package Lesson4;
 
+import Lesson4.exeptions.InvalidNamingException;
+
+import java.util.Locale;
 import java.util.Random;
 
 public class Person {
     private Address address;
     private int age;
     private String name;
+    private String surname;
     private int height;
     private String sex;
 
     public Person() {
     }
 
-    public Person(int age, String name, int height, String sex) {
-        this(age, name, sex);
+    public Person( String name, String surname, int age, int height, String sex) {
+        this.age = age;
+        try{
+            name = editString(name);
+            this.name = name;
+        } catch (InvalidNamingException e){
+            System.out.println("При создании человека было неверно указано имя");
+        }
+        try{
+            surname = editString(surname);
+            this.surname = surname;
+        } catch (InvalidNamingException e){
+            System.out.println("При создании человека была неверно указана фамилия");
+        }
         this.height = height;
         this.sex = sex;
     }
 
-    public Person(int age, String name, String sex) {
-        this();
-        this.height = 180;
-        this.age = age;
-        this.name = name;
-        this.sex = sex;
-    }
 
     public void info() {
         Random random = new Random();
@@ -39,7 +48,6 @@ public class Person {
     private void secureInfo() {
         System.out.println("Hello, my name is " + name + " and I'm " + age + " years old");
     }
-
 
     public Address getAddress() {
         return address;
@@ -65,6 +73,14 @@ public class Person {
         this.name = name;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
     public int getHeight() {
         return height;
     }
@@ -81,5 +97,9 @@ public class Person {
         this.sex = sex;
     }
 
-
+    private String editString(String word) throws InvalidNamingException {
+        word = word.trim();
+        if(word.contains(" ")) throw new InvalidNamingException();
+        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase(Locale.ROOT);
+    }
 }

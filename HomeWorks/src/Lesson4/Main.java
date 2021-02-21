@@ -8,23 +8,23 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        Person konstantin = new Person(19, "Konstantin", 185, "male");
+        Person konstantin = new Person( "Konstantin", "Pupa", 19, 185, "male");
         Address konstantinsAddress = new Address("Belarus", "Minsk");
         konstantin.setAddress(konstantinsAddress);
 
-        Person konstantin2 = new Person(19, "Konstantin", 185, "male");
+        Person konstantin2 = new Person( "Konstantin", "Lupa", 19, 185, "male");
         Address konstantins2Address = new Address("Belarus", "Minsk");
         konstantin2.setAddress(konstantins2Address);
 
-        Person gleb = new Person(25, "Gleb", 190, "male");
+        Person gleb = new Person( "Gleb", "A", 25, 190, "male");
         Address glebsAddress = new Address("Belarus", "Minsk");
         gleb.setAddress(glebsAddress);
 
-        Person oleg = new Person(21, "Oleg", 190, "male");
+        Person oleg = new Person( "Oleg", "B", 21, 190, "male");
         Address olegsAddress = new Address("Belarus", "Minsk");
         oleg.setAddress(olegsAddress);
 
-        Person vadim = new Person(22, "Vadim", 167, "male");
+        Person vadim = new Person( "Vadim", "C", 22, 167, "male");
         Address vadimsAddress = new Address("Belarus", "Minsk");
         vadim.setAddress(vadimsAddress);
 
@@ -43,9 +43,10 @@ public class Main {
 
         militaryUnit1.getInfo();
         militaryUnit1.getRecruitsList();
-        militaryUnit2.getInfo();
-        militaryUnit3.getInfo();
-        militaryUnit4.getInfo();
-        militaryUnit5.getInfo();
+        militaryUnit1.getEditedRecruitsList();
+
+        Person personA = new Person("Miha ", " naME ", 25, 457, "male");
+        System.out.println(personA.getName());
+        System.out.println(personA.getSurname());
     }
 }
