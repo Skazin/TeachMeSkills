@@ -53,22 +53,26 @@ public class MilitaryUnit {
     }
 
     public void getRecruitsList(){
+        int index = 1;
         System.out.println("Список служащих в воинской части " + name +" по очередности записи:");
         for (Person rookie : recruits) {
-            System.out.println(rookie.getSurname() + " " + rookie.getName() + ", " + rookie.getAge() + " лет.");
+            System.out.println(index + ". " + rookie.getSurname() + " " + rookie.getName() + ", " + rookie.getAge() + " лет.");
+            index++;
         }
     }
 
     public void getEditedRecruitsList() {
         System.out.println("Список служащих в воинской части " + name +" в алфавитном порядке:");
         List<String> surnames = new LinkedList<>();
+        int index = 1;
         for (Person rookie : recruits) {
             surnames.add(rookie.getSurname() + " " + rookie.getName() + ", " + rookie.getAge() + " лет.");
         }
         String[] strings = surnames.toArray(new String[surnames.size()]);
         Arrays.sort(strings);
         for (String str:strings) {
-            System.out.println(str);
+            System.out.println(index + ". " + str);
+            index++;
         }
     }
 

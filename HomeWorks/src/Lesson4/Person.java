@@ -17,21 +17,17 @@ public class Person {
     }
 
     public Person( String name, String surname, int age, int height, String sex) {
-        this.age = age;
         try{
+            this.age = age;
             name = editString(name);
             this.name = name;
-        } catch (InvalidNamingException e) {
-            System.out.println("При создании человека было неверно указано имя");
-        }
-        try{
             surname = editString(surname);
             this.surname = surname;
+            this.height = height;
+            this.sex = sex;
         } catch (InvalidNamingException e) {
-            System.out.println("При создании человека была неверно указана фамилия");
+            System.out.println("При создании человека были неверно указаны имя и/или фамилия");
         }
-        this.height = height;
-        this.sex = sex;
     }
 
 
