@@ -16,18 +16,16 @@ public class Person {
     public Person() {
     }
 
-    public Person( String name, String surname, int age, int height, String sex) {
-        try{
+    public Person( String name, String surname, int age, int height, String sex) throws InvalidNamingException {
             this.age = age;
             name = editString(name);
+            if(name.contains(" ")) throw new InvalidNamingException();
             this.name = name;
             surname = editString(surname);
+            if(surname.contains(" ")) throw new InvalidNamingException();
             this.surname = surname;
             this.height = height;
             this.sex = sex;
-        } catch (InvalidNamingException e) {
-            System.out.println("При создании человека были неверно указаны имя и/или фамилия");
-        }
     }
 
 
@@ -93,9 +91,8 @@ public class Person {
         this.sex = sex;
     }
 
-    private String editString(String word) throws InvalidNamingException {
+    private String editString(String word)  {
         word = word.trim();
-        if(word.contains(" ")) throw new InvalidNamingException();
         return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase(Locale.ROOT);
     }
 }
