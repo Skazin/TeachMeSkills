@@ -45,4 +45,8 @@ public class Product {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public boolean equals(Product product) {
+        return this.id == product.id;
+    }
 }

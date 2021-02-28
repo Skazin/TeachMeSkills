@@ -41,15 +41,51 @@ public class Market {
     }
 
     public void editProduct(Product editedProduct) throws MissingIdException {
+        boolean found = false;
         for (Product product : productList) {
-            mapList.put(product.getId(), product);
+            if (product.equals(editedProduct)) {
+                found = true;
+                product.setName(editedProduct.getName());
+                product.setType(editedProduct.getType());
+                product.setPrice(editedProduct.getPrice());
+            }
         }
-        if (mapList.containsKey(editedProduct.getId())) {
-            mapList.replace(editedProduct.getId(), editedProduct);
-        } else {
-            throw new MissingIdException();
+        if (!found) throw new MissingIdException();
+    }
+
+    public List<String> priceSort(List<Product> list) {
+        Comparator<Product> c = new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                if (o1.getPrice() - o2.getPrice() >= 0) return 1;
+                else return -1;
+            }
+        };
+        Set<Product> setOfProducts= new TreeSet<>(c);
+        setOfProducts.addAll(list);
+        List<String> stringList = new LinkedList<>();
+        for (Product product : setOfProducts) {
+            stringList.add(product.getName());
         }
-        productList.clear();
-        productList.addAll(mapList.values());
+        return stringList;
+    }
+
+    public String orderOfAdditionSort(List<Product> list) {
+        StringBuilder builder = new StringBuilder();
+        String[] arr = new String[list.size()];
+        List<String> products = new LinkedList<>();
+        for (Product product : list) {
+            products.add(product.getName());
+        }
+        arr = products.toArray(new String[list.size()]);
+        for (int i = arr.length -1; i >= 0 ; i--) {
+            if (i != 0) {
+                builder.append(arr[i]);
+                builder.append(", ");
+            } else {
+                builder.append(arr[i]);
+            }
+        }
+        return builder.toString();
     }
 }
