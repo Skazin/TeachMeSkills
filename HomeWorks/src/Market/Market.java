@@ -6,7 +6,13 @@ import java.util.*;
 public class Market {
 
     private Set<Product> productList = new LinkedHashSet<>();
-    private Map<Integer, Product> mapList = new LinkedHashMap<>();
+    private Comparator<Product> c = new Comparator<Product>() {
+        @Override
+        public int compare(Product o1, Product o2) {
+            if (o1.getPrice() - o2.getPrice() >= 0) return 1;
+            else return -1;
+        }
+    };
 
     public Market() {
 
@@ -53,16 +59,9 @@ public class Market {
         if (!found) throw new MissingIdException();
     }
 
-    public List<String> priceSort(List<Product> list) {
-        Comparator<Product> c = new Comparator<Product>() {
-            @Override
-            public int compare(Product o1, Product o2) {
-                if (o1.getPrice() - o2.getPrice() >= 0) return 1;
-                else return -1;
-            }
-        };
+    public List<String> priceSort() {
         Set<Product> setOfProducts= new TreeSet<>(c);
-        setOfProducts.addAll(list);
+        setOfProducts.addAll(listOfProducts());
         List<String> stringList = new LinkedList<>();
         for (Product product : setOfProducts) {
             stringList.add(product.getName());
@@ -70,14 +69,14 @@ public class Market {
         return stringList;
     }
 
-    public String orderOfAdditionSort(List<Product> list) {
+    public String orderOfAdditionSort() {
         StringBuilder builder = new StringBuilder();
-        String[] arr = new String[list.size()];
+        String[] arr = new String[listOfProducts().size()];
         List<String> products = new LinkedList<>();
-        for (Product product : list) {
+        for (Product product : listOfProducts()) {
             products.add(product.getName());
         }
-        arr = products.toArray(new String[list.size()]);
+        arr = products.toArray(new String[listOfProducts().size()]);
         for (int i = arr.length -1; i >= 0 ; i--) {
             if (i != 0) {
                 builder.append(arr[i]);

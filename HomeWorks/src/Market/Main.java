@@ -26,11 +26,11 @@ public class Main {
 
         System.out.println(market.listToString());
 
-        System.out.println(market.priceSort(market.listOfProducts())); // список товаров, отсортированных по цене по возрастанию
+        System.out.println(market.priceSort()); // список товаров, отсортированных по цене по возрастанию
 
         market.deleteProduct(6);
 
-        System.out.println(market.orderOfAdditionSort(market.listOfProducts())); // список товаров, отсортированных по порядку добавления(последние добавленные в начале)
+        System.out.println(market.orderOfAdditionSort()); // список товаров, отсортированных по порядку добавления(последние добавленные в начале)
 
         try{
             market.editProduct(product11);
