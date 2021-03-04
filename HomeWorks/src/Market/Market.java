@@ -71,12 +71,12 @@ public class Market {
 
     public String orderOfAdditionSort() {
         StringBuilder builder = new StringBuilder();
-        String[] arr = new String[listOfProducts().size()];
+        String[] arr = new String[productList.size()];
         List<String> products = new LinkedList<>();
-        for (Product product : listOfProducts()) {
+        for (Product product : productList) {
             products.add(product.getName());
         }
-        arr = products.toArray(new String[listOfProducts().size()]);
+        arr = products.toArray(new String[productList.size()]);
         for (int i = arr.length -1; i >= 0 ; i--) {
             if (i != 0) {
                 builder.append(arr[i]);
