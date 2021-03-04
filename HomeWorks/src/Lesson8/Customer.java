@@ -8,7 +8,7 @@ public class Customer implements Runnable{
     private String name;
     private String productList;
     public int cashierNumber = 0;
-    private static final boolean[] customerAllowed = new boolean[5]; //"Покупательское" место занято - true, свободно - false
+    private static final boolean[] customerAllowed = new boolean[2]; //"Покупательское" место занято - true, свободно - false
     private static final Semaphore security = new Semaphore(2, true);
 
 
@@ -28,7 +28,7 @@ public class Customer implements Runnable{
 
             //Покупатель смотрит есть ли свободные кассы
 
-            for (int i = 1; i < 6; i++)
+            for (int i = 0; i < 2; i++)
                 if (!customerAllowed[i]) {      //Если есть касса,
                     customerAllowed[i] = true;  //подходим
                     cashierNumber = i;
@@ -36,7 +36,7 @@ public class Customer implements Runnable{
                     break;
                 }
 
-            Thread.sleep(5000);       //Рассчитываемся
+            Thread.sleep(3000);       //Рассчитываемся
             System.out.println("Покупатель " + name + " приобрел все товары из своего списка: " + productList);
 
             customerAllowed[cashierNumber] = false; //Выходим из аптеки
