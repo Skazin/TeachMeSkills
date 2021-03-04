@@ -31,7 +31,7 @@ public class Customer implements Runnable{
             for (int i = 0; i < 2; i++)
                 if (!customerAllowed[i]) {      //Если есть касса,
                     customerAllowed[i] = true;  //подходим
-                    cashierNumber = i;
+                    cashierNumber = i + 1;
                     System.out.println("Покупатель " + name + " подходит к кассе №" + cashierNumber);
                     break;
                 }
