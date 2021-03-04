@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class MarketMenu {
 
     private boolean opened = true;
-    private final Scanner in = new Scanner(System.in);
+    private final Scanner inInt = new Scanner(System.in);
+    private final Scanner inString = new Scanner(System.in);
     private int choice;
 
     public MarketMenu() {
@@ -30,7 +31,7 @@ public class MarketMenu {
     public void menuCircle(Market market) {
         if (opened) {
             menuList();
-            choice = in.nextInt();
+            choice = inInt.nextInt();
             switch (choice) {
                 case 1:
                     sortChoice(market);
@@ -92,7 +93,7 @@ public class MarketMenu {
         System.out.println("1. Сортировка по цене товаров.");
         System.out.println("2. Сортировка по приходу товаров в магазин (начиная с новых товаров).");
         System.out.println("3. Вернуться в меню.");
-        choice = in.nextInt();
+        choice = inInt.nextInt();
         switch (choice) {
             case 1 -> {
                 market.priceSort();
@@ -113,15 +114,15 @@ public class MarketMenu {
     private void additionMenu(Market market) {
         System.out.println("Введите критерии для нового товара1:");
         System.out.println("Введите ID товара:");
-        int id = in.nextInt();
+        int id = inInt.nextInt();
         System.out.println("Введите наименование товара:");
-        String name = in.nextLine();
+        String name = inString.nextLine();
         System.out.println("Введите товарную группу:");
-        String type = in.nextLine();
+        String type = inString.nextLine();
         System.out.println("Введите цену товара:");
-        int price = in.nextInt();
+        int price = inInt.nextInt();
         System.out.println("Введите количество товара:");
-        int numberOfProducts = in.nextInt();
+        int numberOfProducts = inInt.nextInt();
         Product product = new Product(id,name, type, price, numberOfProducts);
         market.addProduct(product);
     }
@@ -132,7 +133,7 @@ public class MarketMenu {
      */
     private void deletionMenu(Market market) {
         System.out.println("Введите ID товара, который Вы собираетесь удалить:");
-        int id = in.nextInt();
+        int id = inInt.nextInt();
         market.deleteProduct(id);
     }
 
@@ -143,15 +144,15 @@ public class MarketMenu {
     private void editionMenu(Market market) {
         System.out.println("Введите критерии для нового товара:");
         System.out.println("Введите ID товара:");
-        int id = in.nextInt();
+        int id = inInt.nextInt();
         System.out.println("Введите наименование товара:");
-        String name = in.nextLine();
+        String name = inString.nextLine();
         System.out.println("Введите товарную группу:");
-        String type = in.nextLine();
+        String type = inString.nextLine();
         System.out.println("Введите цену товара:");
-        int price = in.nextInt();
+        int price = inInt.nextInt();
         System.out.println("Введите количество товара:");
-        int numberOfProducts = in.nextInt();
+        int numberOfProducts = inString.nextInt();
         Product product = new Product(id,name, type, price, numberOfProducts);
         try {
             market.editProduct(product);
@@ -166,9 +167,9 @@ public class MarketMenu {
      */
     private void setNumber(Market market) {
         System.out.println("Введите ID существующего товара:");
-        int id = in.nextInt();
+        int id = inInt.nextInt();
         System.out.println("Введите новое количество товара:");
-        int numberOfProducts = in.nextInt();
+        int numberOfProducts = inInt.nextInt();
         try {
             market.editNumber(id, numberOfProducts);
         } catch (MissingIdException e) {
@@ -182,9 +183,9 @@ public class MarketMenu {
      */
     private void buyingDesire(Market market) {
         System.out.println("Введите ID товара, который Вы собираетесь купить:");
-        int id = in.nextInt();
+        int id = inInt.nextInt();
         System.out.println("Введите количество товара, которое Вы собираетесь купить:");
-        int numberOfProducts = in.nextInt();
+        int numberOfProducts = inInt.nextInt();
         try {
             for (Product product : market.listOfProducts()) {
                 if (product.getId() == id)
@@ -195,7 +196,7 @@ public class MarketMenu {
                                 "Выберите действие:");
                         System.out.println("1. Купить весь товар в наличии.");
                         System.out.println("2. Отменить чек и вернуться в меню.");
-                        choice = in.nextInt();
+                        choice = inInt.nextInt();
                         switch (choice) {
                             case 1 -> payment(market, product, id, product.getNumberOfThis());
                             case 2 -> menuCircle(market);
@@ -236,7 +237,7 @@ public class MarketMenu {
         System.out.println("3. Средняя стоимость всех товаров в магазине.");
         System.out.println("4. Средняя стоимость всех товаров по товарным группам.");
         System.out.println("5. Вернуться в меню.");
-        choice = in.nextInt();
+        choice = inInt.nextInt();
         switch (choice) {
             case 1 -> {
                 market.numberOfTypes();

@@ -63,8 +63,8 @@ public class Market {
         Set<Product> setOfProducts= new TreeSet<>(c);
         setOfProducts.addAll(listOfProducts());
         for (Product product : setOfProducts) {
-            System.out.println("Товар: " + product.getName() + "; ID: " + product.getId() +
-                    "; товарная группа: " + product.getType() + "; цена: " + product.getPrice() + ".");
+            System.out.println("Товар: " + product.getName() + ", ID: " + product.getId() +
+                    ", товарная группа: " + product.getType() + ", цена: " + product.getPrice() + ", количество на складе: " + product.getNumberOfThis() + ".");
         }
     }
 
@@ -73,8 +73,8 @@ public class Market {
         List<Product> products = new LinkedList<>(productList);
         arr = products.toArray(new Product[productList.size()]);
         for (int i = arr.length -1; i >= 0 ; i--) {
-            System.out.println("Товар: " + arr[i].getName() + "; ID: " + arr[i].getId() +
-                    "; товарная группа: " + arr[i].getType() + "; цена: " + arr[i].getPrice() + ".");
+            System.out.println("Товар: " + arr[i].getName() + ", ID: " + arr[i].getId() +
+                    ", товарная группа: " + arr[i].getType() + ", цена: " + arr[i].getPrice() + ", количество на складе: " + arr[i].getNumberOfThis() + ".");
         }
     }
 
