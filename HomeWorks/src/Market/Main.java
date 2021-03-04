@@ -1,20 +1,16 @@
 package Market;
 
-import Market.Exceptions.MissingIdException;
-
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
 
+        MarketMenu menu = new MarketMenu();
         Market market = new Market();
-        Product product1 = new Product(1, "Апельсин", "фрукты", 5);
-        Product product11 = new Product(1, "Пиво", "фрукты", 10);
-        Product product2 = new Product(2, "Яблоко", "фрукты", 3);
-        Product product3 = new Product(3, "Картошка", "овощи", 1);
-        Product product4 = new Product(4, "Томат", "овощи", 4);
-        Product product5 = new Product(5, "Банан", "фрукты", 5);
-        Product product6 = new Product(6, "Ананас", "фрукты", 10);
+        Product product1 = new Product(1, "Апельсин", "фрукты", 5, 6);
+        Product product2 = new Product(2, "Яблоко", "фрукты", 3,9);
+        Product product3 = new Product(3, "Картошка", "овощи", 1, 45);
+        Product product4 = new Product(4, "Томат", "овощи", 4, 7);
+        Product product5 = new Product(5, "Банан", "фрукты", 5, 14);
+        Product product6 = new Product(6, "Ананас", "фрукты", 10, 47);
 
 
         market.addProduct(product1);
@@ -24,21 +20,7 @@ public class Main {
         market.addProduct(product5);
         market.addProduct(product6);
 
-        System.out.println(market.listToString());
-
-        System.out.println(market.priceSort()); // список товаров, отсортированных по цене по возрастанию
-
-        market.deleteProduct(6);
-
-        System.out.println(market.orderOfAdditionSort()); // список товаров, отсортированных по порядку добавления(последние добавленные в начале)
-
-        try{
-            market.editProduct(product11);
-        } catch (MissingIdException e) {
-            System.out.println("Бла бла");
-        }
-
-        System.out.println(market.listToString());
+        menu.start(market);
     }
 
 

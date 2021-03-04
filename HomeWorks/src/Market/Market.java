@@ -5,14 +5,14 @@ import java.util.*;
 
 public class Market {
 
-    private Set<Product> productList = new LinkedHashSet<>();
-    private Comparator<Product> c = new Comparator<Product>() {
-        @Override
-        public int compare(Product o1, Product o2) {
-            if (o1.getPrice() - o2.getPrice() >= 0) return 1;
-            else return -1;
-        }
+    private final Set<Product> productList = new LinkedHashSet<>();
+    private final Comparator<Product> c = (o1, o2) -> {
+        if (o1.getPrice() - o2.getPrice() >= 0) return 1;
+        else return -1;
     };
+    private int priceCounter = 0;
+    private int productsCounter = 0;
+    private double averagePrice = 0;
 
     public Market() {
 
@@ -27,19 +27,7 @@ public class Market {
     }
 
     public List<Product> listOfProducts() {
-        List<Product> products = new LinkedList<>();
-        for (Product product : productList) {
-            products.add(product);
-        }
-        return products;
-    }
-
-    public List<String> listToString() {
-        List<String> products = new LinkedList<>();
-        for (Product product : productList) {
-            products.add(product.getName());
-        }
-        return products;
+        return new LinkedList<>(productList);
     }
 
     public void deleteProduct(int id) {
@@ -54,37 +42,96 @@ public class Market {
                 product.setName(editedProduct.getName());
                 product.setType(editedProduct.getType());
                 product.setPrice(editedProduct.getPrice());
+                product.setNumberOfThis(editedProduct.getNumberOfThis());
             }
         }
         if (!found) throw new MissingIdException();
     }
 
-    public List<String> priceSort() {
-        Set<Product> setOfProducts= new TreeSet<>(c);
-        setOfProducts.addAll(listOfProducts());
-        List<String> stringList = new LinkedList<>();
-        for (Product product : setOfProducts) {
-            stringList.add(product.getName());
-        }
-        return stringList;
-    }
-
-    public String orderOfAdditionSort() {
-        StringBuilder builder = new StringBuilder();
-        String[] arr = new String[productList.size()];
-        List<String> products = new LinkedList<>();
+    public void editNumber(int id, int number) throws MissingIdException {
+        boolean found = false;
         for (Product product : productList) {
-            products.add(product.getName());
-        }
-        arr = products.toArray(new String[productList.size()]);
-        for (int i = arr.length -1; i >= 0 ; i--) {
-            if (i != 0) {
-                builder.append(arr[i]);
-                builder.append(", ");
-            } else {
-                builder.append(arr[i]);
+            if (product.getId() == id) {
+                found = true;
+                product.setNumberOfThis(number);
             }
         }
-        return builder.toString();
+        if (!found) throw new MissingIdException();
+    }
+
+    public void priceSort() {
+        Set<Product> setOfProducts= new TreeSet<>(c);
+        setOfProducts.addAll(listOfProducts());
+        for (Product product : setOfProducts) {
+            System.out.println("Товар: " + product.getName() + "; ID: " + product.getId() +
+                    "; товарная группа: " + product.getType() + "; цена: " + product.getPrice() + ".");
+        }
+    }
+
+    public void orderOfAdditionSort() {
+        Product[] arr;
+        List<Product> products = new LinkedList<>(productList);
+        arr = products.toArray(new Product[productList.size()]);
+        for (int i = arr.length -1; i >= 0 ; i--) {
+            System.out.println("Товар: " + arr[i].getName() + "; ID: " + arr[i].getId() +
+                    "; товарная группа: " + arr[i].getType() + "; цена: " + arr[i].getPrice() + ".");
+        }
+    }
+
+    public void numberOfTypes() {
+        Set<String> setOfTypes = new HashSet<>();
+        for (Product product : productList) {
+            setOfTypes.add(product.getType());
+        }
+        System.out.println("Список товарных групп:");
+        int counter = 0;
+        for (String type : setOfTypes) {
+            System.out.println(type);
+            counter++;
+        }
+        System.out.println("Общее количество товарных групп: " + counter + ".");
+    }
+
+    public void numberOfProducts() {
+        int namesCounter = productList.size();
+        int productsCounter = 0;
+        for (Product product : productList) {
+            productsCounter += product.getNumberOfThis();
+        }
+        System.out.println("Общее количество наименований: " + namesCounter + ".");
+        System.out.println("Всего товаров в магазине: " + productsCounter + ".");
+    }
+
+    public void averagePrice() {
+        priceCounter = 0;
+        productsCounter = 0;
+        for (Product product : productList) {
+            priceCounter += product.getNumberOfThis() * product.getPrice();
+            productsCounter += product.getNumberOfThis();
+        }
+        averagePrice = (double) priceCounter / productsCounter;
+        System.out.println("Средняя стоимость всех товаров в магазине: " + averagePrice + ".");
+    }
+
+    public void averageTypePrice() {
+        Set<String> setOfTypes = new HashSet<>();
+        for (Product product : productList) {
+            setOfTypes.add(product.getType());
+        }
+        for (String type : setOfTypes) {
+            priceCounter = 0;
+            productsCounter = 0;
+            for (Product product : productList) {
+                if (type.equals(product.getType())) {
+                    priceCounter += product.getNumberOfThis() * product.getPrice();
+                    productsCounter += product.getNumberOfThis();
+                }
+            }
+            averagePrice = (double) priceCounter / productsCounter;
+            System.out.println("Средняя стоимость всех товаров в товарной группе (" + type + "): " + averagePrice + ".");
+            priceCounter = 0;
+            productsCounter = 0;
+            averagePrice = 0;
+        }
     }
 }

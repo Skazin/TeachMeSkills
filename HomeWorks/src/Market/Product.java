@@ -6,12 +6,14 @@ public class Product {
     private String name;
     private String type;
     private int price;
+    private int numberOfThis;
 
-    public Product(int id, String name, String type, int price) {
+    public Product(int id, String name, String type, int price, int numberOfIt) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.price = price;
+        this.numberOfThis = numberOfIt;
     }
 
     public int getId() {
@@ -48,5 +50,13 @@ public class Product {
 
     public boolean equals(Product product) {
         return this.id == product.id;
+    }
+
+    public int getNumberOfThis() {
+        return numberOfThis;
+    }
+
+    public void setNumberOfThis(int numberOfThis) {
+        this.numberOfThis = numberOfThis;
     }
 }
