@@ -90,20 +90,25 @@ public class MarketMenu {
      */
     private void sortChoice(Market market) {
         System.out.println("Введите желаемую сортировку (номер сортировки):");
-        System.out.println("1. Сортировка по цене товаров.");
-        System.out.println("2. Сортировка по приходу товаров в магазин (начиная с новых товаров).");
-        System.out.println("3. Вернуться в меню.");
+        System.out.println("1. Сортировка по возрастанию цены товара.");
+        System.out.println("2. Сортировка по убыванию цены товара.");
+        System.out.println("3. Сортировка по приходу товаров в магазин (начиная с новых товаров).");
+        System.out.println("4. Вернуться в меню.");
         choice = inInt.nextInt();
         switch (choice) {
             case 1 -> {
-                market.priceSort();
+                market.priceSortIncrease();
                 sortChoice(market);
             }
             case 2 -> {
+                market.priceSortDecrease();
+                sortChoice(market);
+            }
+            case 3 -> {
                 market.orderOfAdditionSort();
                 sortChoice(market);
             }
-            case 3 -> menuCircle(market);
+            case 4 -> menuCircle(market);
         }
     }
 

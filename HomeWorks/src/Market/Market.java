@@ -6,8 +6,12 @@ import java.util.*;
 public class Market {
 
     private final Set<Product> productList = new LinkedHashSet<>();
-    private final Comparator<Product> c = (o1, o2) -> {
+    private final Comparator<Product> increase = (o1, o2) -> {
         if (o1.getPrice() - o2.getPrice() >= 0) return 1;
+        else return -1;
+    };
+    private final Comparator<Product> decrease = (o1, o2) -> {
+        if (o1.getPrice() - o2.getPrice() <= 0) return 1;
         else return -1;
     };
     private int priceCounter = 0;
@@ -59,8 +63,17 @@ public class Market {
         if (!found) throw new MissingIdException();
     }
 
-    public void priceSort() {
-        Set<Product> setOfProducts= new TreeSet<>(c);
+    public void priceSortIncrease() {
+        Set<Product> setOfProducts= new TreeSet<>(increase);
+        setOfProducts.addAll(listOfProducts());
+        for (Product product : setOfProducts) {
+            System.out.println("Товар: " + product.getName() + ", ID: " + product.getId() +
+                    ", товарная группа: " + product.getType() + ", цена: " + product.getPrice() + ", количество на складе: " + product.getNumberOfThis() + ".");
+        }
+    }
+
+    public void priceSortDecrease() {
+        Set<Product> setOfProducts= new TreeSet<>(decrease);
         setOfProducts.addAll(listOfProducts());
         for (Product product : setOfProducts) {
             System.out.println("Товар: " + product.getName() + ", ID: " + product.getId() +
