@@ -1,5 +1,6 @@
 package Market;
 
+import Market.Exceptions.InvalidValueException;
 import Market.Exceptions.MissingIdException;
 import java.util.*;
 

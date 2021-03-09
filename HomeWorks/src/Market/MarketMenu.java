@@ -1,5 +1,6 @@
 package Market;
 
+import Market.Exceptions.InvalidValueException;
 import Market.Exceptions.MissingIdException;
 
 import java.util.Date;
@@ -26,7 +27,7 @@ public class MarketMenu {
     }
 
     /**
-     * Method visualizes menu
+     * Method represents menu logic
      */
     public void menuCircle(Market market) {
         if (opened) {
@@ -38,17 +39,31 @@ public class MarketMenu {
                     menuCircle(market);
                     break;
                 case 2:
-                    additionMenu(market);
-                    menuCircle(market);
-                    break;
+                    try {
+                        additionMenu(market);
+                        menuCircle(market);
+                        break;
+                    } catch (InvalidValueException e) {
+                        System.out.println("Вы ввели неверное значение, попробуйте снова.");
+                        menuCircle(market);
+                        break;
+                    }
+
                 case 3:
                     deletionMenu(market);
                     menuCircle(market);
                     break;
                 case 4:
-                    editionMenu(market);
-                    menuCircle(market);
-                    break;
+                        try{
+                            editionMenu(market);
+                            menuCircle(market);
+                            break;
+                        } catch (InvalidValueException e) {
+                            System.out.println("Вы ввели неверное значение, попробуйте снова.");
+                            menuCircle(market);
+                            break;
+                        }
+
                 case 5:
                     setNumber(market);
                     menuCircle(market);
@@ -116,7 +131,7 @@ public class MarketMenu {
      * Method adds new product to our market
      * @param market - market we work with
      */
-    private void additionMenu(Market market) {
+    private void additionMenu(Market market) throws InvalidValueException {
         System.out.println("Введите критерии для нового товара1:");
         System.out.println("Введите ID товара:");
         int id = inInt.nextInt();
@@ -126,8 +141,10 @@ public class MarketMenu {
         String type = inString.nextLine();
         System.out.println("Введите цену товара:");
         int price = inInt.nextInt();
+        if (price < 0) throw new InvalidValueException();
         System.out.println("Введите количество товара:");
         int numberOfProducts = inInt.nextInt();
+        if (numberOfProducts < 0) throw new InvalidValueException();
         Product product = new Product(id,name, type, price, numberOfProducts);
         market.addProduct(product);
     }
@@ -146,7 +163,7 @@ public class MarketMenu {
      * Method edits product in our market
      * @param market - market we work with
      */
-    private void editionMenu(Market market) {
+    private void editionMenu(Market market) throws InvalidValueException {
         System.out.println("Введите критерии для нового товара:");
         System.out.println("Введите ID товара:");
         int id = inInt.nextInt();
@@ -156,8 +173,10 @@ public class MarketMenu {
         String type = inString.nextLine();
         System.out.println("Введите цену товара:");
         int price = inInt.nextInt();
+        if (price < 0) throw new InvalidValueException();
         System.out.println("Введите количество товара:");
-        int numberOfProducts = inString.nextInt();
+        int numberOfProducts = inInt.nextInt();
+        if (numberOfProducts < 0) throw new InvalidValueException();
         Product product = new Product(id,name, type, price, numberOfProducts);
         try {
             market.editProduct(product);
