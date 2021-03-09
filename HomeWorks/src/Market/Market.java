@@ -1,6 +1,5 @@
 package Market;
 
-import Market.Exceptions.InvalidValueException;
 import Market.Exceptions.MissingIdException;
 import java.util.*;
 
@@ -50,7 +49,7 @@ public class Market {
                 product.setNumberOfThis(editedProduct.getNumberOfThis());
             }
         }
-        if (!found) throw new MissingIdException();
+        if (!found) throw new MissingIdException("Товара с ID - " + editedProduct.getId() + " нет в списке товаров, попробуйте добавить такой товар.");
     }
 
     public void editNumber(int id, int number) throws MissingIdException {
@@ -61,7 +60,7 @@ public class Market {
                 product.setNumberOfThis(number);
             }
         }
-        if (!found) throw new MissingIdException();
+        if (!found) throw new MissingIdException("Товара с ID - " + id + " нет в списке товаров, попробуйте добавить такой товар.");
     }
 
     public void priceSortIncrease() {

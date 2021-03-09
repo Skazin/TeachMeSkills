@@ -39,39 +39,32 @@ public class MarketMenu {
                     menuCircle(market);
                     break;
                 case 2:
-                    try {
-                        additionMenu(market);
-                        menuCircle(market);
-                        break;
-                    } catch (InvalidValueException e) {
-                        System.out.println("Вы ввели неверное значение, попробуйте снова.");
-                        menuCircle(market);
-                        break;
-                    }
-
+                    additionMenu(market);
+                    menuCircle(market);
+                    break;
                 case 3:
                     deletionMenu(market);
                     menuCircle(market);
                     break;
                 case 4:
-                        try{
-                            editionMenu(market);
-                            menuCircle(market);
-                            break;
-                        } catch (InvalidValueException e) {
-                            System.out.println("Вы ввели неверное значение, попробуйте снова.");
-                            menuCircle(market);
-                            break;
-                        }
-
+                    editionMenu(market);
+                    menuCircle(market);
+                    break;
                 case 5:
                     setNumber(market);
                     menuCircle(market);
                     break;
                 case 6:
-                    buyingDesire(market);
-                    menuCircle(market);
-                    break;
+                    try {
+                        buyingDesire(market);
+                        menuCircle(market);
+                        break;
+                    } catch (MissingIdException e) {
+                        System.out.println(e.getMessage());
+                        menuCircle(market);
+                        break;
+                    }
+
                 case 7:
                     bookkeping(market);
                     menuCircle(market);
@@ -131,8 +124,8 @@ public class MarketMenu {
      * Method adds new product to our market
      * @param market - market we work with
      */
-    private void additionMenu(Market market) throws InvalidValueException {
-        System.out.println("Введите критерии для нового товара1:");
+    private void additionMenu(Market market) {
+        System.out.println("Введите критерии для нового товара:");
         System.out.println("Введите ID товара:");
         int id = inInt.nextInt();
         System.out.println("Введите наименование товара:");
@@ -141,12 +134,24 @@ public class MarketMenu {
         String type = inString.nextLine();
         System.out.println("Введите цену товара:");
         int price = inInt.nextInt();
-        if (price < 0) throw new InvalidValueException();
         System.out.println("Введите количество товара:");
         int numberOfProducts = inInt.nextInt();
-        if (numberOfProducts < 0) throw new InvalidValueException();
-        Product product = new Product(id,name, type, price, numberOfProducts);
-        market.addProduct(product);
+        try {
+            Product product = new Product(id,name, type, price, numberOfProducts);
+            market.addProduct(product);
+        } catch (InvalidValueException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Выберите действие:");
+            System.out.println("1. Попробовать добавить товар снова.");
+            System.out.println("2. Вернуться в меню");
+            choice = inInt.nextInt();
+            switch (choice) {
+                case 1 -> additionMenu(market);
+                case 2 -> menuCircle(market);
+            }
+
+        }
+
     }
 
     /**
@@ -163,7 +168,7 @@ public class MarketMenu {
      * Method edits product in our market
      * @param market - market we work with
      */
-    private void editionMenu(Market market) throws InvalidValueException {
+    private void editionMenu(Market market) {
         System.out.println("Введите критерии для нового товара:");
         System.out.println("Введите ID товара:");
         int id = inInt.nextInt();
@@ -173,15 +178,23 @@ public class MarketMenu {
         String type = inString.nextLine();
         System.out.println("Введите цену товара:");
         int price = inInt.nextInt();
-        if (price < 0) throw new InvalidValueException();
         System.out.println("Введите количество товара:");
         int numberOfProducts = inInt.nextInt();
-        if (numberOfProducts < 0) throw new InvalidValueException();
-        Product product = new Product(id,name, type, price, numberOfProducts);
         try {
+            Product product = new Product(id,name, type, price, numberOfProducts);
             market.editProduct(product);
         } catch (MissingIdException e) {
-            System.out.println("Товара с ID - " + id + " нет в списке товаров, попробуйде добавить такой товар.");
+            System.out.println(e.getMessage());
+        } catch (InvalidValueException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Выберите действие:");
+            System.out.println("1. Попробовать изменить товар снова.");
+            System.out.println("2. Вернуться в меню");
+            choice = inInt.nextInt();
+            switch (choice) {
+                case 1 -> editionMenu(market);
+                case 2 -> menuCircle(market);
+            }
         }
     }
 
@@ -197,7 +210,7 @@ public class MarketMenu {
         try {
             market.editNumber(id, numberOfProducts);
         } catch (MissingIdException e) {
-            System.out.println("Товара с ID - " + id + " нет в списке товаров, попробуйде добавить такой товар.");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -205,30 +218,27 @@ public class MarketMenu {
      * Method shows that we want to buy smth
      * @param market - market we work with
      */
-    private void buyingDesire(Market market) {
+    private void buyingDesire(Market market) throws MissingIdException {
         System.out.println("Введите ID товара, который Вы собираетесь купить:");
         int id = inInt.nextInt();
         System.out.println("Введите количество товара, которое Вы собираетесь купить:");
         int numberOfProducts = inInt.nextInt();
-        try {
-            for (Product product : market.listOfProducts()) {
-                if (product.getId() == id)
-                    if (product.getNumberOfThis() >= numberOfProducts) {
+        for (Product product : market.listOfProducts()) {
+            if (product.getId() == id) {
+                if (product.getNumberOfThis() >= numberOfProducts) {
                     payment(market, product, id, numberOfProducts);
-                    } else {
-                        System.out.println("Товара " + product.getName() + " не достаточно, чтобы удовлетворить ваш запрос (в данный момент его " + product.getNumberOfThis() + "шт). " +
-                                "Выберите действие:");
-                        System.out.println("1. Купить весь товар в наличии.");
-                        System.out.println("2. Отменить чек и вернуться в меню.");
-                        choice = inInt.nextInt();
-                        switch (choice) {
-                            case 1 -> payment(market, product, id, product.getNumberOfThis());
-                            case 2 -> menuCircle(market);
-                        }
+                } else {
+                    System.out.println("Товара " + product.getName() + " не достаточно, чтобы удовлетворить ваш запрос (в данный момент его " + product.getNumberOfThis() + "шт). " +
+                            "Выберите действие:");
+                    System.out.println("1. Купить весь товар в наличии.");
+                    System.out.println("2. Отменить чек и вернуться в меню.");
+                    choice = inInt.nextInt();
+                    switch (choice) {
+                        case 1 -> payment(market, product, id, product.getNumberOfThis());
+                        case 2 -> menuCircle(market);
                     }
-            }
-        } catch (MissingIdException e) {
-            System.out.println("Товара с ID - " + id + " нет в списке товаров, попробуйде добавить такой товар.");
+                }
+            } else throw new MissingIdException("Товара с ID - " + id + " нет в списке товаров. Еще раз ознакомьтесь со списком товаров.");
         }
     }
 
@@ -239,9 +249,13 @@ public class MarketMenu {
      * @param id - id of this product
      * @param number - quantity of buyable product
      */
-    private void payment(Market market, Product product, int id, int number) throws MissingIdException {
+    private void payment(Market market, Product product, int id, int number) {
         int sum = product.getPrice() * number;
-        market.editNumber(id, product.getNumberOfThis() - number);
+        try {
+            market.editNumber(id, product.getNumberOfThis() - number);
+        } catch (MissingIdException e) {
+            System.out.println(e.getMessage());
+        }
         System.out.println("Товарный чек (" + new Date().toString() + "):");
         System.out.println("Товар: " + product.getName());
         System.out.println("ID: " + product.getId());

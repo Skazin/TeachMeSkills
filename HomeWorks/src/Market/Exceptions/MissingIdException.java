@@ -2,8 +2,8 @@ package Market.Exceptions;
 
 public class MissingIdException extends Exception{
 
-    public MissingIdException() {
-        super();
+    public MissingIdException(String message) {
+        super(message);
     }
 
 }

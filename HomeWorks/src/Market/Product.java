@@ -1,5 +1,7 @@
 package Market;
 
+import Market.Exceptions.InvalidValueException;
+
 public class Product {
 
     private int id;
@@ -8,7 +10,9 @@ public class Product {
     private int price;
     private int numberOfThis;
 
-    public Product(int id, String name, String type, int price, int numberOfIt) {
+    public Product(int id, String name, String type, int price, int numberOfIt) throws InvalidValueException {
+        if (price < 0) throw new InvalidValueException("Вы ввели неверное значение. Цена товара не может быть ниже нуля.");
+        if (numberOfIt < 0) throw new InvalidValueException("Вы ввели неверное значение. Количество товара не может быть меньше нуля.");
         this.id = id;
         this.name = name;
         this.type = type;

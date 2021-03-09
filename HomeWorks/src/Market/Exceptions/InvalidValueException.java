@@ -1,7 +1,7 @@
 package Market.Exceptions;
 
 public class InvalidValueException extends Exception{
-    public InvalidValueException() {
-        super();
+    public InvalidValueException(String message) {
+        super(message);
     }
 }
