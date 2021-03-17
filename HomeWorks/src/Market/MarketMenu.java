@@ -55,16 +55,9 @@ public class MarketMenu {
                     menuCircle(market);
                     break;
                 case 6:
-                    try {
                         buyingDesire(market);
                         menuCircle(market);
                         break;
-                    } catch (MissingIdException e) {
-                        System.out.println(e.getMessage());
-                        menuCircle(market);
-                        break;
-                    }
-
                 case 7:
                     bookkeping(market);
                     menuCircle(market);
@@ -72,6 +65,9 @@ public class MarketMenu {
                 case 8:
                     opened = false;
                     System.out.println("Всего доброго! Приходите еще!");
+                    break;
+                default:
+                    menuCircle(market);
                     break;
             }
         }
@@ -218,7 +214,7 @@ public class MarketMenu {
      * Method shows that we want to buy smth
      * @param market - market we work with
      */
-    private void buyingDesire(Market market) throws MissingIdException {
+    private void buyingDesire(Market market) {
         System.out.println("Введите ID товара, который Вы собираетесь купить:");
         int id = inInt.nextInt();
         System.out.println("Введите количество товара, которое Вы собираетесь купить:");
@@ -238,7 +234,7 @@ public class MarketMenu {
                         case 2 -> menuCircle(market);
                     }
                 }
-            } else throw new MissingIdException("Товара с ID - " + id + " нет в списке товаров. Еще раз ознакомьтесь со списком товаров.");
+            }
         }
     }
 
@@ -269,6 +265,7 @@ public class MarketMenu {
      * @param market - market we work with
      */
     private void bookkeping(Market market) {
+        Bookkeping bookkeping = new Bookkeping(market);
         System.out.println("Выберите действие (укажите номер действия):");
         System.out.println("1. Количество товарных групп.");
         System.out.println("2. Общее количество товаров.");
@@ -278,19 +275,19 @@ public class MarketMenu {
         choice = inInt.nextInt();
         switch (choice) {
             case 1 -> {
-                market.numberOfTypes();
+                bookkeping.numberOfTypes();
                 bookkeping(market);
             }
             case 2 -> {
-                market.numberOfProducts();
+                bookkeping.numberOfProducts();
                 bookkeping(market);
             }
             case 3 -> {
-                market.averagePrice();
+                bookkeping.averagePrice();
                 bookkeping(market);
             }
             case 4 -> {
-                market.averageTypePrice();
+                bookkeping.averageTypePrice();
                 bookkeping(market);
             }
             case 5 -> menuCircle(market);
