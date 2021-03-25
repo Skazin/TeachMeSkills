@@ -10,13 +10,16 @@ class Robot() : IRobot {
     private lateinit var leg : ILeg
     private lateinit var name : String
 
-    constructor(head_param : IHead, hand_param : IHand, leg_param : ILeg, name_param : String) : this() {
-        head = head_param
-        hand = hand_param
-        leg = leg_param
-        name = name_param
+    constructor(headParam : IHead, handParam : IHand, legParam : ILeg, nameParam : String) : this() {
+        head = headParam
+        hand = handParam
+        leg = legParam
+        name = nameParam
 
     }
+
+    override var price : Int = head.price + hand.price + leg.price
+    override var robotName : String = name
 
     override fun action() {
         println("Меня зовут $name")
@@ -24,9 +27,4 @@ class Robot() : IRobot {
         hand.upHand()
         leg.step()
     }
-
-    fun getRobotName(): String = name
-
-    override fun getRobotPrice(): Int = head.getHeadPrice() + hand.getHandPrice() + leg.getLegPrice()
-
 }

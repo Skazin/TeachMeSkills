@@ -1,8 +1,8 @@
 package Robot.Legs
 
-class ToshibaLeg(private val price_param : Int) : ILeg {
+class ToshibaLeg(private val priceParam : Int) : ILeg {
 
-    private var price = price_param
+    override var price : Int = priceParam
         set(value) {
             if(value > 0) field = value
         }
@@ -10,6 +10,4 @@ class ToshibaLeg(private val price_param : Int) : ILeg {
     override fun step() {
         println("Шагает нога Toshiba")
     }
-
-    override fun getLegPrice(): Int = price
 }

@@ -1,8 +1,8 @@
 package Robot.Hands
 
-class ToshibaHand(private val price_param : Int) : IHand {
+class ToshibaHand(private val priceParam : Int) : IHand {
 
-    var price = price_param
+    override var price = priceParam
         set(value) {
             if(value > 0) field = value
         }
@@ -10,6 +10,4 @@ class ToshibaHand(private val price_param : Int) : IHand {
     override fun upHand() {
         println("Машет рука Toshiba")
     }
-
-    override fun getHandPrice(): Int = price
 }

@@ -7,11 +7,11 @@ class Appraiser {
     fun whoIsTheMostExpensive (robots : Array<Robot>) {
         theMostExpensiveRobot = robots[0];
         for (item in robots) {
-            if (item.getRobotPrice() >  theMostExpensiveRobot.getRobotPrice()) {
+            if (item.price >  theMostExpensiveRobot.price) {
                 theMostExpensiveRobot = item;
             }
         }
-        println("Самый дорогой робот из представленных - ${theMostExpensiveRobot.getRobotName()}. Его стоимость равна: ${theMostExpensiveRobot.getRobotPrice()}")
+        println("Самый дорогой робот из представленных - ${theMostExpensiveRobot.robotName}. Его стоимость равна: ${theMostExpensiveRobot.price}")
     }
 }
 

@@ -1,8 +1,8 @@
 package Robot.Heads
 
-class ToshibaHead(private val price_param : Int) : IHead {
+class ToshibaHead(private val priceParam : Int) : IHead {
 
-    private var price = price_param
+    override var price = priceParam
         set(value) {
             if(value > 0) field = value
         }
@@ -10,6 +10,4 @@ class ToshibaHead(private val price_param : Int) : IHead {
     override fun speak() {
         println("Машет рука Toshiba")
     }
-
-    override fun getHeadPrice() : Int = price
 }

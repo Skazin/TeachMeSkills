@@ -1,8 +1,8 @@
 package Robot.Hands
 
-class SonyHand(private val price_param : Int) : IHand {
+class SonyHand(private val priceParam : Int) : IHand {
 
-    var price = price_param
+    override var price = priceParam
         set(value) {
             if(value > 0) field = value
         }
@@ -10,6 +10,4 @@ class SonyHand(private val price_param : Int) : IHand {
     override fun upHand() {
         println("Машет рука Sony")
     }
-
-    override fun getHandPrice(): Int = price
 }
